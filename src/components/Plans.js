@@ -1,10 +1,12 @@
 import * as React from 'react'
-import Card from '@mui/material/Card'
-import CardActions from '@mui/material/CardActions'
-import CardContent from '@mui/material/CardContent'
-import Button from '@mui/material/Button'
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import Divider from '@mui/material/Divider'
+import ListItemText from '@mui/material/ListItemText'
+import ListItemAvatar from '@mui/material/ListItemAvatar'
+import Avatar from '@mui/material/Avatar'
 import Typography from '@mui/material/Typography'
-import { Divider } from '@mui/material'
+import FitnessCenterIcon from '@mui/icons-material/FitnessCenter'
 
 const plans = [
   { id: 1, name: 'Easy', duration_minutes: 15 },
@@ -21,34 +23,36 @@ const plans = [
 
 const Plans = () => {
   return (
-    <div>
+    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
       {plans.map((plan) => (
         <>
-          <Card sx={{ minWidth: 275 }}>
-            <CardContent>
-              <Typography
-                sx={{ fontSize: 14 }}
-                color='text.secondary'
-                gutterBottom
-              >
-                {plan.name}
-              </Typography>
-              <Typography
-                sx={{ fontSize: 14 }}
-                color='text.secondary'
-                gutterBottom
-              >
-                Duration: {plan.duration_minutes} min
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Button size='small'>Learn More</Button>
-            </CardActions>
-          </Card>
+          <ListItem alignItems='flex-start'>
+            <ListItemAvatar>
+              <Avatar>
+                <FitnessCenterIcon sx={{ color: 'black' }} />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText
+              primary={plan.name}
+              secondary={
+                <React.Fragment>
+                  <Typography
+                    sx={{ display: 'inline' }}
+                    component='span'
+                    variant='body2'
+                    color='text.primary'
+                  >
+                    {plan.duration_minutes} minutes
+                  </Typography>
+                  {' (estimated time)'}
+                </React.Fragment>
+              }
+            />
+          </ListItem>
           <Divider />
         </>
       ))}
-    </div>
+    </List>
   )
 }
 

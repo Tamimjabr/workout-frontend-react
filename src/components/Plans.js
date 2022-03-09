@@ -27,6 +27,7 @@ const Plans = () => {
   return (
     <List
       sx={{
+        m:'auto',
         width: '100%',
         maxWidth: 360,
         bgcolor: 'background.paper',

@@ -7,6 +7,8 @@ import ListItemAvatar from '@mui/material/ListItemAvatar'
 import Avatar from '@mui/material/Avatar'
 import Typography from '@mui/material/Typography'
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter'
+import { Link } from 'react-router-dom'
+import { Button } from '@mui/material'
 
 const plans = [
   { id: 1, name: 'Easy', duration_minutes: 15 },
@@ -23,7 +25,14 @@ const plans = [
 
 const Plans = () => {
   return (
-    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+    <List
+      sx={{
+        width: '100%',
+        maxWidth: 360,
+        bgcolor: 'background.paper',
+        '& a': { textDecoration: 'none' }
+      }}
+    >
       {plans.map((plan) => (
         <>
           <ListItem alignItems='flex-start'>
@@ -48,6 +57,11 @@ const Plans = () => {
                 </React.Fragment>
               }
             />
+            <Link to={`/plans/${plan.id}`}>
+              <Button type='button' variant='contained' color='info'>
+                Details
+              </Button>
+            </Link>
           </ListItem>
           <Divider />
         </>

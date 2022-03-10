@@ -11,6 +11,7 @@ import Divider from '@mui/material/Divider'
 import InboxIcon from '@mui/icons-material/Inbox'
 import DraftsIcon from '@mui/icons-material/Drafts'
 import { getAllEquipments } from '../integrations/workout-api'
+import ListSubheader from '@mui/material/ListSubheader'
 
 const Equipments = () => {
   let { id } = useParams()
@@ -27,24 +28,29 @@ const Equipments = () => {
     if (!equipments) {
       getEquipments()
     }
-  }, [equipments])
+  }, [equipments, id, setEquipments])
 
   return (
     <>
       {equipments && (
         <List
           sx={{
-            m: 'auto',
+            m: '1rem auto',
             width: '100%',
             maxWidth: 360,
             bgcolor: 'background.paper',
             '& a': { textDecoration: 'none' }
           }}
+          subheader={
+            <ListSubheader component='div' id='Equipments'>
+              Equipments:
+            </ListSubheader>
+          }
         >
-          {equipments.map((plan, index) => (
-            <ListItem key={index} disablePadding>
+          {equipments.map((equipment) => (
+            <ListItem disablePadding>
               <ListItemButton component='a' href='#simple-list'>
-                <ListItemText primary={equipments.equipment_type} />
+                <ListItemText primary={equipment.equipment_type} />
               </ListItemButton>
             </ListItem>
           ))}

@@ -23,3 +23,16 @@ export const getExercisesByPlanId = async (planId) => {
     throw new Error('Unable to fetch exercises')
   }
 }
+
+export const getBodyPartPercentages = async (planId) => {
+  try {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/plans/${planId}/body-parts`)
+    if (response.status !== 200) {
+      throw new Error('Unable to fetch body part percentages')
+    }
+
+    return await response.json()
+  } catch (error) {
+    throw new Error('Unable to fetch body part percentages')
+  }
+}

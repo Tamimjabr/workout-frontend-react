@@ -17,6 +17,7 @@ const ExercisesContainer = styled('div')`
   gap: 1rem;
   align-items: center;
   justify-content: space-evenly;
+  margin: auto auto 2rem;
 `
 
 const Exercises = () => {

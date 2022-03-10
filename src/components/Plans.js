@@ -12,8 +12,6 @@ import { Link } from 'react-router-dom'
 import { Button } from '@mui/material'
 import { getAllPlans } from '../integrations/workout-api'
 
-
-
 const Plans = () => {
   const [plans, setPlans] = useState(null)
 
@@ -33,14 +31,14 @@ const Plans = () => {
       {plans && (
         <List
           sx={{
-            m: 'auto',
+            m: 'auto auto 2rem',
             width: '100%',
             maxWidth: 360,
             bgcolor: 'background.paper',
             '& a': { textDecoration: 'none' }
           }}
         >
-          {plans.map((plan) => (
+          {plans.map((plan, index) => (
             <>
               <ListItem alignItems='flex-start'>
                 <ListItemAvatar>
@@ -70,7 +68,7 @@ const Plans = () => {
                   </Button>
                 </Link>
               </ListItem>
-              <Divider />
+              {plans.length - 1 !== index && <Divider />}
             </>
           ))}
         </List>

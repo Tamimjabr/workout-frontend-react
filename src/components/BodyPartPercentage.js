@@ -64,7 +64,6 @@ const BodyPartPercentage = () => {
 
     return (
         <div>
-            <p>tata</p>
             {['right'].map((anchor) => (
                 <React.Fragment key={anchor}>
                     <Button onClick={toggleDrawer(anchor, true)} variant='contained' color='info'>Body part percentage</Button>

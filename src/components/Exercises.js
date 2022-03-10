@@ -32,7 +32,7 @@ const Exercises = () => {
     if (!exercises) {
       getExercises()
     }
-  }, [exercises])
+  }, [exercises, id])
 
   return (
     <>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getBodyPartPercentages } from '../integrations/workout-api'
 import Box from '@mui/material/Box'
@@ -8,10 +8,7 @@ import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
 import Drawer from '@mui/material/Drawer'
 import Button from '@mui/material/Button'
-
 import ListItemIcon from '@mui/material/ListItemIcon'
-import InboxIcon from '@mui/icons-material/MoveToInbox'
-import MailIcon from '@mui/icons-material/Mail'
 import { GiMuscleUp } from 'react-icons/gi'
 
 const BodyPartPercentage = () => {
@@ -70,7 +67,7 @@ const BodyPartPercentage = () => {
       <p>tata</p>
       {['right'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
+          <Button onClick={toggleDrawer(anchor, true)} variant='contained' color='info'>Body part percentage</Button>
           <Drawer
             anchor={anchor}
             open={state[anchor]}

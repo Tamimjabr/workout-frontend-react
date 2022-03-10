@@ -8,7 +8,7 @@ function App() {
       <header className='App-header'>Hej Ida</header>
       <Routes>
         <Route path='/' element={<Plans />} />
-        <Route path='/exercises' element={<Exercises />} />
+        <Route path='/plans/:id/exercises' element={<Exercises />} />
       </Routes>
     </div>
   )

@@ -64,7 +64,7 @@ const Plans = () => {
                     </React.Fragment>
                   }
                 />
-                <Link to={`/plans/${plan.id}`}>
+                <Link to={`/plans/${plan.id}/exercises`}>
                   <Button type='button' variant='contained' color='info'>
                     Details
                   </Button>

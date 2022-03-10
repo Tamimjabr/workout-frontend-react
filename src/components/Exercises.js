@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography'
 import { CardActionArea } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import Equipments from './Equipments'
+import BodyPartPercentage from './BodyPartPercentage'
 
 const ExercisesContainer = styled('div')`
   display: flex;
@@ -35,6 +36,7 @@ const Exercises = () => {
 
   return (
     <>
+      {<BodyPartPercentage />}
       {exercises && <Equipments />}
       {exercises && (
         <ExercisesContainer>

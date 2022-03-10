@@ -6,43 +6,82 @@ import Box from '@mui/material/Box'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
+import Drawer from '@mui/material/Drawer'
+import Button from '@mui/material/Button'
+
+import ListItemIcon from '@mui/material/ListItemIcon'
+import InboxIcon from '@mui/icons-material/MoveToInbox'
+import MailIcon from '@mui/icons-material/Mail'
+import { GiMuscleUp } from 'react-icons/gi'
 
 const BodyPartPercentage = () => {
-    let { id } = useParams()
-    const [bodyPartPercentages, setBodyPartPercentages] = useState(null)
+  let { id } = useParams()
+  const [bodyPartPercentages, setBodyPartPercentages] = useState(null)
 
-    useEffect(() => {
-        const getPercentages = async () => {
-            const response = await getBodyPartPercentages(id)
-            setBodyPartPercentages(response)
-        }
+  const getPercentages = async () => {
+    const response = await getBodyPartPercentages(id)
+    setBodyPartPercentages(response)
+  }
 
-        if (!bodyPartPercentages) {
-            getPercentages()
-        }
-    }, [bodyPartPercentages])
+  const [state, setState] = React.useState({
+    right: false
+  })
 
-    return (
-        <>
-            {bodyPartPercentages && (
-                <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-                    <nav aria-label="body part percentages">
-                        <List>
-                            {bodyPartPercentages.map((bodyPartPercentage) => (
-                                <>
-                                    <ListItem disablePadding>
-                                        <ListItemText primary={bodyPartPercentage.body_part} />
-                                        <ListItemText primary={bodyPartPercentage.percentage} />
-                                    </ListItem>
-                                </>
-                            ))}
-                        </List>
-                    </nav>
-                </Box>
-            )}
-            )
-        </>
-    )
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (!bodyPartPercentages) {
+      getPercentages()
+    }
+
+    if (
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
+    ) {
+      return
+    }
+
+    setState({ ...state, [anchor]: open })
+  }
+
+  const list = (anchor) => (
+    <Box
+      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+      role='presentation'
+      onClick={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, false)}
+    >
+      <List>
+        {bodyPartPercentages &&
+          bodyPartPercentages.map((bodyPartPercentage, index) => (
+            <ListItem button key={index}>
+              <ListItemIcon>
+                <GiMuscleUp />
+              </ListItemIcon>
+              <ListItemText
+                primary={`${bodyPartPercentage.body_part}: ${bodyPartPercentage.percentage}%`}
+              />
+            </ListItem>
+          ))}
+      </List>
+    </Box>
+  )
+
+  return (
+    <div>
+      <p>tata</p>
+      {['right'].map((anchor) => (
+        <React.Fragment key={anchor}>
+          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
+          <Drawer
+            anchor={anchor}
+            open={state[anchor]}
+            onClose={toggleDrawer(anchor, false)}
+          >
+            {list(anchor)}
+          </Drawer>
+        </React.Fragment>
+      ))}
+    </div>
+  )
 }
 
 export default BodyPartPercentage

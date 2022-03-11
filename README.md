@@ -1,1 +1,1 @@
-For the React app (frontend), you need to create “.env” file and add the key from “.env.example” file and provide the API URL for the backend server that you have started, then you can start React app using “npm start”
+For the React app (frontend), you need to create “.env” file and add the key from “.env.example” file and provide the API URL for the backend server that you have started. To install dependencies you should run “npm install”, then you can start the React app using “npm start”.

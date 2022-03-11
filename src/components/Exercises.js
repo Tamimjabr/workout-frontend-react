@@ -26,7 +26,7 @@ const ExercisesContainer = styled('div')`
 const Exercises = () => {
   let { id } = useParams()
   const [exercises, setExercises] = useState(null)
-
+  const [isDataSaverMode, setIsDataSaverMode] = useState(false)
 
   useEffect(() => {
     const getExercises = async () => {
@@ -37,12 +37,17 @@ const Exercises = () => {
     if (!exercises) {
       getExercises()
     }
-  }, [exercises,  id])
+  }, [exercises, id])
+
 
   const handleDataSaverSwitch = async (event) => {
     const isChecked = event.target.checked
+    console.log(isChecked)
+
     const response = await getExercisesByPlanId(id, isChecked)
     setExercises(response)
+    setIsDataSaverMode(isChecked)
+    console.log(isDataSaverMode)
   }
 
   return (
@@ -62,12 +67,14 @@ const Exercises = () => {
           {exercises.map((exercise) => (
             <Card key={exercises.id} sx={{ maxWidth: 345 }}>
               <CardActionArea>
-                <CardMedia
-                  component='img'
-                  height='350'
-                  image={exercise.gif_url}
-                  alt='Gif of the exercise'
-                />
+                {!isDataSaverMode && (
+                  <CardMedia
+                    component='img'
+                    height='350'
+                    image={exercise.gif_url}
+                    alt='Gif of the exercise'
+                  />
+                )}
                 <CardContent>
                   <Typography gutterBottom variant='h5' component='div'>
                     {exercise.name}

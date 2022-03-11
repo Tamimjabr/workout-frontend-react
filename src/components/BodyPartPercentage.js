@@ -47,6 +47,11 @@ const BodyPartPercentage = () => {
             onKeyDown={toggleDrawer(anchor, false)}
         >
             <List>
+                <ListItem>
+                    <ListItemText>
+                        Body part percentage
+                    </ListItemText>
+                </ListItem>
                 {bodyPartPercentages &&
                     bodyPartPercentages.map((bodyPartPercentage, index) => (
                         <ListItem button key={index}>
@@ -66,7 +71,7 @@ const BodyPartPercentage = () => {
         <div>
             {['right'].map((anchor) => (
                 <React.Fragment key={anchor}>
-                    <Button onClick={toggleDrawer(anchor, true)} variant='contained' color='info' sx={{m: '0 1rem'}}>Body part percentage</Button>
+                    <Button onClick={toggleDrawer(anchor, true)} variant='contained' color='info' sx={{ m: '0 1rem' }}>Body part percentage</Button>
                     <Drawer
                         anchor={anchor}
                         open={state[anchor]}

@@ -47,6 +47,11 @@ const Equipments = () => {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
+        <ListItem>
+          <ListItemText>
+            Equipments
+          </ListItemText>
+        </ListItem>
         {equipments &&
           equipments.map((equipment, index) => (
             <ListItem button key={index}>

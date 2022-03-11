@@ -63,7 +63,7 @@ const Exercises = () => {
           {exercises && <BodyPartPercentage />}
           <FormControlLabel
             control={<Switch />}
-            label='DataSaver'
+            label='Hide gifs'
             sx={{ m: 'auto 2rem auto auto' }}
             onChange={handleDataSaverSwitch}
           />

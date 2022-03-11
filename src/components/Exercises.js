@@ -10,6 +10,9 @@ import { CardActionArea } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import Equipments from './Equipments'
 import BodyPartPercentage from './BodyPartPercentage'
+import FormGroup from '@mui/material/FormGroup'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import Switch from '@mui/material/Switch'
 
 const ExercisesContainer = styled('div')`
   display: flex;
@@ -37,6 +40,13 @@ const Exercises = () => {
 
   return (
     <>
+      <FormGroup>
+        <FormControlLabel
+          control={<Switch defaultChecked />}
+          label='DataSaver'
+          sx={{ m: 'auto 2rem auto auto' }}
+        />
+      </FormGroup>
       {<BodyPartPercentage />}
       {exercises && <Equipments />}
       {exercises && (

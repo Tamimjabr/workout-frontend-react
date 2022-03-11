@@ -23,6 +23,14 @@ const ExercisesContainer = styled('div')`
   margin: auto auto 2rem;
 `
 
+const ButtonsContainer = styled('div')`
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+`
+
 const Exercises = () => {
   let { id } = useParams()
   const [exercises, setExercises] = useState(null)
@@ -42,26 +50,26 @@ const Exercises = () => {
 
   const handleDataSaverSwitch = async (event) => {
     const isChecked = event.target.checked
-    console.log(isChecked)
 
     const response = await getExercisesByPlanId(id, isChecked)
     setExercises(response)
     setIsDataSaverMode(isChecked)
-    console.log(isDataSaverMode)
   }
 
   return (
     <>
       <FormGroup>
-        <FormControlLabel
-          control={<Switch />}
-          label='DataSaver'
-          sx={{ m: 'auto 2rem auto auto' }}
-          onChange={handleDataSaverSwitch}
-        />
+        <ButtonsContainer>
+          {exercises && <BodyPartPercentage />}
+          <FormControlLabel
+            control={<Switch />}
+            label='DataSaver'
+            sx={{ m: 'auto 2rem auto auto' }}
+            onChange={handleDataSaverSwitch}
+          />
+        </ButtonsContainer>
+        {<Equipments />}
       </FormGroup>
-      {<BodyPartPercentage />}
-      {exercises && <Equipments />}
       {exercises && (
         <ExercisesContainer>
           {exercises.map((exercise) => (

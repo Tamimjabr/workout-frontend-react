@@ -66,7 +66,7 @@ const Equipments = () => {
     <div>
       {['right'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)} variant='contained' color='info'>Equipments</Button>
+          <Button onClick={toggleDrawer(anchor, true)} variant='contained' color='info' sx={{m: '1rem'}}>Equipments</Button>
           <Drawer
             anchor={anchor}
             open={state[anchor]}

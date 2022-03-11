@@ -27,24 +27,32 @@ const Exercises = () => {
   let { id } = useParams()
   const [exercises, setExercises] = useState(null)
 
+
   useEffect(() => {
     const getExercises = async () => {
-      const response = await getExercisesByPlanId(id)
+      const response = await getExercisesByPlanId(id, false)
       setExercises(response)
     }
 
     if (!exercises) {
       getExercises()
     }
-  }, [exercises, id])
+  }, [exercises,  id])
+
+  const handleDataSaverSwitch = async (event) => {
+    const isChecked = event.target.checked
+    const response = await getExercisesByPlanId(id, isChecked)
+    setExercises(response)
+  }
 
   return (
     <>
       <FormGroup>
         <FormControlLabel
-          control={<Switch defaultChecked />}
+          control={<Switch />}
           label='DataSaver'
           sx={{ m: 'auto 2rem auto auto' }}
+          onChange={handleDataSaverSwitch}
         />
       </FormGroup>
       {<BodyPartPercentage />}

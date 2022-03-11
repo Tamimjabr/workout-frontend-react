@@ -12,10 +12,10 @@ export const getAllPlans = async () => {
   }
 }
 
-export const getExercisesByPlanId = async (planId) => {
+export const getExercisesByPlanId = async (planId, isDataSaverMode) => {
   try {
     const response = await fetch(
-      `${process.env.REACT_APP_API_URL}/plans/${planId}/exercises`
+      `${process.env.REACT_APP_API_URL}/plans/${planId}/exercises?datasaver=${isDataSaverMode}`
     )
     if (response.status !== 200) {
       throw new Error('Unable to fetch exercises')
